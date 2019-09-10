@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Card from '../../components/Card/Card';
+import './BooksContainer.css';
 
 class BooksContainer extends Component {
     state = {
@@ -47,18 +49,17 @@ class BooksContainer extends Component {
     }
 
     render () {
-        const books = 'No books in library';
+        let books = 'No books in library';
         if(this.state.books.length > 0) {
             books = '';
-            this.state.books.map((book) => {
-                books += '<Card book={book}>';
-            })
+            
         }
+        console.log('books',books);
         return (
-            <div>
-                <h2> List of books ddd</h2>
+            <div className='booksContainer'>
+                <h2> List of books</h2>
                 <div>
-                    Here are some books
+                    {this.state.books.map((book) => (<Card book={book}></Card>))}
                 </div>
             </div>
         );
