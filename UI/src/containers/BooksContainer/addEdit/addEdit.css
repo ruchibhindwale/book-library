@@ -1,0 +1,37 @@
+.addEditForm {
+    border: 1px solid gray;
+    width: 75%;
+    margin : 20px auto;
+    background-color: ivory;
+}
+
+.addEditForm div{
+    display: inline-block;
+    width: 40%;
+    padding: 10px;
+    margin: 15px;
+    min-width : 200px;
+
+}
+
+label {
+    margin: 5px;
+}
+
+.bookDescription{
+    text-align: center;
+}
+
+.addEditForm div>input, select {
+    height: 20px;
+    margin: 0 10px;
+    border: 1px solid black;
+}
+
+textarea {
+    max-height: 50px;
+}
+
+.submit {
+    margin: 20px;
+}

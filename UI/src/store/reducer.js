@@ -11,6 +11,12 @@ const reducer = (state = initialState, action) => {
             books: action.response.data
         }
     }
+    if(action.type === actionTypes.ADD_SUCCESS) {
+        return {
+            ...state,
+            books: this.state.books.push(action.response.data)
+        }
+    }
     return state;
 }
 

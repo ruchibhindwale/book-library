@@ -8,5 +8,14 @@
     padding: 10px;
     margin: 10px;
     overflow: auto;
+    position: relative;
+}
+
+.editIcon {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
