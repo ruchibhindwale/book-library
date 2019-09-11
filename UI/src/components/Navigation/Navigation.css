@@ -2,3 +2,9 @@ nav a {
     padding: 5px;
     margin: 10px;
 }
+
+nav a:active,
+nav a:hover,
+nav a.active {
+    color: #fa923f;
+}

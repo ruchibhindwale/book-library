@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { BrowserRouter } from 'react-router';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
 import Navigation from '../Navigation/Navigation';
@@ -7,7 +8,7 @@ import './Layout.css';
 
 const Layout = () => {
     return (
-        <main className='rar'>
+        <main className='layout'>
             <Header />
             <Search />
             <Navigation />

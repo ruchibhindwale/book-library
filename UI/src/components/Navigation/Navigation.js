@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
     return (
         <React.Fragment>
             <nav>
-              <a href='/add'>Add</a>
-              <a href='/edit'>Edit</a>
-              <a href='/list'>List</a>
+              <NavLink to='/add'>Add</NavLink>
+              <NavLink to='/edit'>Edit</NavLink>
+              <NavLink to='/list'>List</NavLink>
             </nav>
         </React.Fragment>
     );
