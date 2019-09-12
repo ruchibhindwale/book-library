@@ -116,6 +116,7 @@ class addEditBook extends Component {
                            name='count' 
                            id='count'
                            max='250' 
+                           min='1'
                            className='input' 
                            value={this.state.count}
                            onChange={this.handleInputChange}
