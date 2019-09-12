@@ -1,12 +1,12 @@
 import React from 'react';
 
 const style = {
-    color: 'blue'
+    color: 'burlywood'
 }
 
 const Header = () => {
     return (
-        <h1 style={style}> BOOK LIBRARY </h1>
+        <h1 style={style}>WELCOME TO ONLINE BOOK LIBRARY </h1>
     );
 }
 

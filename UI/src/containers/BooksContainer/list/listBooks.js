@@ -4,16 +4,21 @@ import * as actionCreators from '../../../store/actions';
 import { connect } from 'react-redux';
 
 class listBooks extends Component {
+
     componentDidMount(){
-       if(this.props.books && this.props.books.length == 0){
+        console.log('list mount',this.props.booksUpdated);
+       if((this.props.books && this.props.books.length == 0) || this.props.booksUpdated){
          this.props.listBooks();
+         this.props.resetUpdateFlag();
        }
     }
 
     componentDidUpdate(){
-        if(this.props.books & this.props.books.length == 0){
+        console.log('list update',this.props.booksUpdated);
+        if((this.props.books && this.props.books.length == 0) || this.props.booksUpdated){
             this.props.listBooks();
-          }
+            this.props.resetUpdateFlag();
+       }
     } 
 
     render () {
@@ -34,13 +39,15 @@ class listBooks extends Component {
 
 const mapStateToProps = state => {
     return {
-        books : state.books
+        books : state.books,
+        booksUpdated : state.booksUpdated
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        listBooks: () => dispatch(actionCreators.list())
+        listBooks: () => dispatch(actionCreators.list()),
+        resetUpdateFlag: () => dispatch(actionCreators.resetUpdateFlag())
     }
 }
 

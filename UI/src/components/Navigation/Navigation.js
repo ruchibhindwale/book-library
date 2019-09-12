@@ -4,13 +4,10 @@ import './Navigation.css';
 
 const Navigation = () => {
     return (
-        <React.Fragment>
-            <nav>
-              <NavLink to='/add'>Add</NavLink>
-              <NavLink to='/edit'>Edit</NavLink>
-              <NavLink to='/list'>List</NavLink>
-            </nav>
-        </React.Fragment>
+        <nav>
+            <NavLink to='/add'>Add</NavLink>
+            <NavLink to='/list'>List</NavLink>
+        </nav>
     );
 }
 

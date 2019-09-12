@@ -1,22 +1,50 @@
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-    books : []
+    books : [],
+    searchedBooks : [],
+    booksUpdated : false
 }
 
 const reducer = (state = initialState, action) => {
-    if(action.type === actionTypes.LIST) {
-        return {
-            ...state,
-            books: action.response.data
-        }
-    }
-    if(action.type === actionTypes.ADD_SUCCESS) {
-        return {
-            ...state,
-            books: this.state.books.push(action.response.data)
-        }
-    }
+    switch(action.type){
+        case actionTypes.LIST:
+            return {
+                ...state,
+                books: action.response.data
+            }
+        case actionTypes.SEARCH:
+            console.log('IN SEARCH');
+            let results = state.books.filter(book => book.name.toLowerCase().includes(action.name.toLowerCase()))
+            console.log('state', state);
+            return {
+                ...state,
+                books: results
+            }
+        case actionTypes.ADD_SUCCESS:
+            return {
+                ...state,
+                booksUpdated: true
+            }
+        case actionTypes.UPDATE_SUCCESS:
+            return {
+                ...state,
+                booksUpdated: true
+            }
+        case actionTypes.RESET_UPDATE_FLAG:
+            return {
+                ...state,
+                booksUpdated: false
+            }
+        case actionTypes.ADD_ERROR:
+            return {
+                ...state
+            }
+        case actionTypes.UPDATE_ERROR:
+            return {
+                ...state
+            }
+    } 
     return state;
 }
 

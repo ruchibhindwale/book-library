@@ -1,24 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actionCreators from '../../../store/actions';
 import './addEdit.css';
+import axios from 'axios';
 
 class addEditBook extends Component {
     state = {
-        name : 'Musings',
-        author: 'Ruchi',
-        description: 'Light',
-        count : 10,
-        publishDate: '',
-        genre: 'comedy'
+        id: '',
+        name : '',
+        author: '',
+        description: '',
+        count : '',
+        isEdit : this.props.match.path.indexOf('edit') !== -1
     }
 
     componentDidMount(){
-        //if (this.props.match.path.contains('edit')){
-            // Get the id
-            // Get the book details from the id
-            // Populate the state using the book details 
-        //}
+        console.log('Component Did Mount - add Edit');
+        if (this.state.isEdit){
+            this.getBook(this.props.match.params.id);
+        }
+    }
+
+    getBook = (id) => {
+        axios.get('http://localhost:3007/book/' + id)
+        .then(response => {
+            const respData = response.data[0];
+            this.setState({
+                id : respData.id,
+                name: respData.name,
+                author: respData.author,
+                description: respData.description,
+                count: respData.count
+            })
+        })
+        .catch(error => {})
     }
 
     handleInputChange = (e) => {
@@ -33,20 +49,29 @@ class addEditBook extends Component {
 
     handleSubmit = (e) => {
         const bookObject = {
-            id: Math.floor(Math.random() * Math.floor(100)),
+            id: this.state.isEdit ?  this.state.id : Math.floor(Math.random() * Math.floor(100)),
             name : this.state.name,
             author: this.state.author,
             description: this.state.description,
-            publishDate: this.state.author.publishDate,
-            count: this.state.count,
-            genre: this.state.genre
+            count: this.state.count
         }
-        this.props.addBook(bookObject);
+        if(this.state.isEdit) {
+            this.props.editBook(bookObject);
+        } else {
+            this.props.addBook(bookObject);
+        }
         e.preventDefault();
     }
 
     render() {
+        console.log('In add edit render', this.props.booksUpdated);
+        let redirect = null;
+        if(this.props.booksUpdated){
+            redirect = <Redirect to='/list'/>
+        }
         return (
+            <div>
+            {redirect}
             <form className='addEditForm' method='post'>
                 <h3> Enter Book Details </h3>
                 <div>
@@ -97,36 +122,25 @@ class addEditBook extends Component {
                            />
                 </div>
     
-                <div>
-                    <label for='publishDate'> Date of Publishing </label>
-                    <input type='date' 
-                           name='publishDate' 
-                           id='publishDate'
-                           value={this.state.publishDate} 
-                           onChange={this.handleInputChange} />
-                </div>
-    
-                <div>
-                    <label for='genre'> Select Genre</label>
-                    <select name='genre' id='genre' onChange={this.handleSelectChange}>
-                        <option value='1'> Comedy </option>
-                        <option value='2'> Adventure Fiction </option>
-                        <option value='3'> Thriller </option>
-                        <option value='4'> Non Fiction </option>
-                        <option value='5'> Biography </option>
-                    </select>
-                </div>
-    
                 <button type='submit' className='submit' onClick={this.handleSubmit}>Submit Details</button>
             </form>
+            </div>
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        booksUpdated : state.booksUpdated
+    };
+}
+
 const mapDispatchToProps = dispatch => {
     return{
-        addBook : (bookData) => {dispatch(actionCreators.add(bookData))}
+        addBook : (bookData) => {dispatch(actionCreators.addBook(bookData))},
+        getBook: (bookId) => {dispatch(actionCreators.getBook(bookId))},
+        editBook: (bookData) => {dispatch(actionCreators.editBook(bookData))} 
     }
 }
 
-export default connect(null, mapDispatchToProps)(addEditBook);
+export default connect(mapStateToProps, mapDispatchToProps)(addEditBook);

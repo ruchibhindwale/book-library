@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router';
 import Header from '../Header/Header';
-import Search from '../Search/Search';
+import Search from '../../containers/Search/Search';
 import Navigation from '../Navigation/Navigation';
 import BooksContainer from '../../containers/BooksContainer/BooksContainer';
 import './Layout.css';
