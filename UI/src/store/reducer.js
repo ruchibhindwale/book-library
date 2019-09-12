@@ -14,9 +14,7 @@ const reducer = (state = initialState, action) => {
                 books: action.response.data
             }
         case actionTypes.SEARCH:
-            console.log('IN SEARCH');
             let results = state.books.filter(book => book.name.toLowerCase().includes(action.name.toLowerCase()))
-            console.log('state', state);
             return {
                 ...state,
                 books: results

@@ -3,6 +3,11 @@ import Card from '../../../components/Card/Card';
 import * as actionCreators from '../../../store/actions';
 import { connect } from 'react-redux';
 
+const styles = {
+    width: '80%', 
+    margin: '30px auto'
+}
+
 class listBooks extends Component {
 
     componentDidMount(){
@@ -27,7 +32,7 @@ class listBooks extends Component {
             books = '';
         }
         return (
-            <div className='booksContainer'>
+            <div style={styles}>
                 <div>
                     {this.props.books.map((book) => (<Card book={book} key={book.id}></Card>))}
                 </div>

@@ -12,12 +12,18 @@ const style = {
 }
 
 class Search extends Component {
+
     render(){
-        console.log('Search Render');
+        console.log('In Search');
         return (
             <React.Fragment>
-                <input type='text' style={style} placeholder='Search using book name' id='searchTxt'/>
-                <button type='button' onClick={() => this.props.searchBooks()}>Search</button>
+                <input type='text' 
+                       style={style} 
+                       placeholder='Search using book name' 
+                       id='searchTxt' 
+                       ref={(input) => this.textInput = input} />
+
+                <button type='button' onClick={() => this.props.searchBooks(this.textInput.value)}>Search</button>
             </React.Fragment>
         );
     }
@@ -31,7 +37,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        searchBooks : () => dispatch(actionCreators.searchBook(document.getElementById('searchTxt').value))
+        searchBooks : (txt) => dispatch(actionCreators.searchBook(txt))
     }
 }
 
