@@ -11,19 +11,21 @@ const styles = {
 class listBooks extends Component {
 
     componentDidMount(){
-        console.log('list mount',this.props.booksUpdated);
        if((this.props.books && this.props.books.length == 0) || this.props.booksUpdated){
          this.props.listBooks();
-         this.props.resetUpdateFlag();
+         if(this.props.booksUpdated){
+            this.props.resetUpdateFlag();
+         }
        }
     }
 
     componentDidUpdate(){
-        console.log('list update',this.props.booksUpdated);
         if((this.props.books && this.props.books.length == 0) || this.props.booksUpdated){
             this.props.listBooks();
-            this.props.resetUpdateFlag();
-       }
+            if(this.props.booksUpdated){
+                this.props.resetUpdateFlag();
+            }
+        }
     } 
 
     render () {

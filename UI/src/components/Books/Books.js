@@ -5,7 +5,6 @@ import addEditBook from '../../containers/Books/addEdit/addEdit';
 
 class BooksContainer extends Component {
     render () {
-        console.log('In BooksContainer');
         return(
             <Fragment>
                 <Route path='/' exact component={ListBooks} />

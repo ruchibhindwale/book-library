@@ -28,8 +28,8 @@ export const resetUpdateFlag = () => {
 export const list = () => {
     return dispatch => {
         axios.get('http://localhost:3007/books')
-            .then((response) => {
-               dispatch(listBooksAction(response));
+        .then((response) => {
+            dispatch(listBooksAction(response));
         })
         .catch(error => {
             console.log('Error', error);

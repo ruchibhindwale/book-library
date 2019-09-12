@@ -2,7 +2,6 @@ import * as actionTypes from './actionTypes';
 
 const initialState = {
     books : [],
-    searchedBooks : [],
     booksUpdated : false
 }
 

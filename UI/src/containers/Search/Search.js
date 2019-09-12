@@ -29,12 +29,6 @@ class Search extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-
-    }    
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         searchBooks : (txt) => dispatch(actionCreators.searchBook(txt))
