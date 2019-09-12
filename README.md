@@ -9,6 +9,7 @@
 7) Adding, editing, searching a book should work
 8) If you resize the window, the UI is responsive and hence gracefully readjusts.
 
+For state management redux is used. Backend code runs on Node which saves, reads, updated the book data from a json file which is stored under data/books.json file. The UI connects to the backend using axios. The backend is running on port 3007 and UI by default on 3000. 
 
 POSSIBLE IMMEDIATE ENHANCEMENTS -
 
